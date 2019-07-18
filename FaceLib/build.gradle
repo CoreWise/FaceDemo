@@ -1,12 +1,12 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 26
 
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 28
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
 
@@ -14,7 +14,6 @@ android {
 
         ndk {
             abiFilters 'armeabi-v7a'
-//            abiFilters "arm64-v8a"
         }
 
     }
@@ -26,12 +25,14 @@ android {
         }
     }
 
-     sourceSets {
-        main {
-            jniLibs.srcDirs = ['libs']
-        }
-    }
 
+}
+
+//2.必须2
+repositories {
+    flatDir {
+        dirs 'libs'   // aar目录
+    }
 }
 
 dependencies {
@@ -41,5 +42,5 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-        api files('libs/ZKLiveFaceService5.6.jar')
+    api files('libs/ZKLiveFaceService5.6.jar')
 }
