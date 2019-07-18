@@ -1,1 +1,1 @@
-include ':Demo', ':FaceLib', ':FaceAuth'//, ':IDCardFace'
+include ':Demo', ':FaceLib', ':FaceAuth', ':IDCardFace'
