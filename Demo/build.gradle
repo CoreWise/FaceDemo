@@ -26,7 +26,7 @@ android {
     applicationVariants.all { variant ->
         variant.outputs.all {
 
-            def fileName = "${defaultConfig.versionName + "_" + buildType.name}.apk"
+            def fileName = "${defaultConfig.versionName + "_" + buildType.name+releaseTime()}.apk"
             outputFileName = fileName
         }
     }

@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 
-
+def releaseTime() {
+    return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
+}
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -27,10 +29,18 @@ android {
     applicationVariants.all { variant ->
         variant.outputs.all {
 
-            def fileName = "${defaultConfig.versionName + "_" + buildType.name}.apk"
+            def fileName = "${defaultConfig.versionName + "_" + buildType.name+releaseTime()}.apk"
             outputFileName = fileName
         }
     }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
 }
 //2.必须2
 repositories {
