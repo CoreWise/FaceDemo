@@ -203,10 +203,7 @@ public class IdentifyFromCamera extends Activity implements SurfaceHolder.Callba
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void cameraConfig() {
-
-
         int de = initDegree();
-
         Camera.Parameters parameters = mCamera.getParameters();
         parameters.setPreviewSize(CAMERA_WIDTH, CAMERA_HEIGH);
         parameters.setPreviewFormat(ImageFormat.NV21);
@@ -224,24 +221,18 @@ public class IdentifyFromCamera extends Activity implements SurfaceHolder.Callba
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private int initDegree() {
-
         int degree = 0;
-
         switch (cw.getDeviceModel()) {
 
             case cw.Device_A370_M4G5:
                 //A370
                 degree = 90;
                 break;
-
             case cw.Device_U8:
-
                 degree = currentCameraType == FRONT ? 180 : 0;
                 break;
             case cw.Device_U3:
-
                 degree = currentCameraType == FRONT ? 180 : 180;
-
                 break;
         }
         Log.i(TAG,"---------------------------------degree: "+degree);

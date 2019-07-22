@@ -22,17 +22,23 @@ android {
         }
     }
 
-     //配置自定义打包名称
+    //配置自定义打包名称
     applicationVariants.all { variant ->
         variant.outputs.all {
 
-            def fileName = "${defaultConfig.versionName + "_" + buildType.name+releaseTime()}.apk"
+            def fileName = "${defaultConfig.versionName + "_" + buildType.name + releaseTime()}.apk"
             outputFileName = fileName
         }
     }
 
 }
 
+//2.必须2
+repositories {
+    flatDir {
+        dirs 'libs'   // aar目录
+    }
+}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:28.0.0'
@@ -41,6 +47,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation project(path: ':FaceLib')
-        api 'ru.bartwell:exfilepicker:2.1'
-
+    api 'ru.bartwell:exfilepicker:2.1'
+    //串口开发包
+    //SerialPort SDK
+    compile(name: 'serialport_sdk_20190712', ext: 'aar')
 }
