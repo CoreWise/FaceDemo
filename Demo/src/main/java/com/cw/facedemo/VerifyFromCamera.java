@@ -2,9 +2,12 @@ package com.cw.facedemo;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.graphics.ImageFormat;
 import android.hardware.Camera;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -15,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cw.facelib.ZKLiveFaceManager;
+import com.cw.serialportsdk.cw;
 
 import java.io.IOException;
 
@@ -26,7 +30,7 @@ import java.io.IOException;
 
 public class VerifyFromCamera extends Activity implements SurfaceHolder.Callback {
 
-    private static final String TAG ="VerifyFromCamera";
+    private static final String TAG = "VerifyFromCamera";
 
     private SurfaceView mSurfaceView;
     private Button mTemplate1Button;
@@ -110,13 +114,14 @@ public class VerifyFromCamera extends Activity implements SurfaceHolder.Callback
         camera = findViewById(R.id.camera);
 
         camera.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
                 //默认后摄
                 if (camera.getText().equals("前摄")) {
                     camera.setText("后摄");
 
-                }else {
+                } else {
                     camera.setText("前摄");
                 }
                 try {
@@ -175,6 +180,7 @@ public class VerifyFromCamera extends Activity implements SurfaceHolder.Callback
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void changeCamera() throws IOException {
 
         int cameraCount = Camera.getNumberOfCameras();
@@ -188,11 +194,14 @@ public class VerifyFromCamera extends Activity implements SurfaceHolder.Callback
         } else if (currentCameraType == BACK) {
             mCamera = openCamera(FRONT);
         }
-        cameraConfig(180);
+        cameraConfig();
     }
 
-    private void cameraConfig(int de) {
-        Log.i(TAG, "----degree----" + de);
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    private void cameraConfig() {
+
+        int de = initDegree();
+
         Camera.Parameters parameters = mCamera.getParameters();
         parameters.setPreviewSize(CAMERA_WIDTH, CAMERA_HEIGH);
         parameters.setPreviewFormat(ImageFormat.NV21);
@@ -207,7 +216,35 @@ public class VerifyFromCamera extends Activity implements SurfaceHolder.Callback
         mCamera.startPreview();
     }
 
-     /**
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    private int initDegree() {
+
+        int degree = 0;
+
+        switch (cw.getDeviceModel()) {
+
+            case cw.Device_A370_M4G5:
+                //A370
+                degree = 90;
+                break;
+
+            case cw.Device_U8:
+
+                degree = currentCameraType == FRONT ? 180 : 0;
+                break;
+            case cw.Device_U3:
+
+                degree = currentCameraType == FRONT ? 180 : 180;
+
+                break;
+        }
+        Log.i(TAG,"---------------------------------degree: "+degree);
+        return degree;
+    }
+
+
+    /**
      * 释放mCamera
      */
     private void releaseCamera() {
@@ -235,15 +272,6 @@ public class VerifyFromCamera extends Activity implements SurfaceHolder.Callback
         return null;
     }
 
-    private Void kill_camera() {
-        if (mCamera != null) {
-            mCamera.setPreviewCallback(null);
-            mCamera.stopPreview();
-            mCamera.release();
-            mCamera = null;
-        }
-        return null;
-    }
 
     class VerifyPreview implements Camera.PreviewCallback {
         @Override
