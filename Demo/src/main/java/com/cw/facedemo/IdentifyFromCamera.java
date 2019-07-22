@@ -211,10 +211,10 @@ public class IdentifyFromCamera extends Activity implements SurfaceHolder.Callba
         mCamera.setParameters(parameters);
         mCamera.setDisplayOrientation(de);
         try {
-            mCamera.setPreviewDisplay(mSurfaceHolder);
-        } catch (IOException e) {
+            mCamera.setPreviewDisplay{
             e.printStackTrace();
-        }
+        }(mSurfaceHolder);
+        } catch (IOException e)
         mCamera.startPreview();
     }
 
