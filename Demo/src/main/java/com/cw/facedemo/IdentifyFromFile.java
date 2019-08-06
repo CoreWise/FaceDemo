@@ -112,6 +112,7 @@ public class IdentifyFromFile extends Activity {
                         mFirstTextView.setText(""+getString(R.string.dbadd_template_success)+",id="+FileUtils.getFileName(path));
                     }else{
                         mFirstTextView.setText(getString(R.string.dbadd_template_fail));
+
                     }
                 }
             }else if(SECOND_CODE == requestCode){

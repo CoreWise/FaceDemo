@@ -17,7 +17,7 @@
 ### 开发文档
 
 - [ZKLiveFace SDK 5.6 Android开发手册20190121](https://raw.githubusercontent.com/CoreWise/FaceDemo/master/ZKLiveFaceSDK_5.6_20190121.pdf)
-
+- 开发文档存在于项目工程根目录
 
 ### 问题汇总
 
