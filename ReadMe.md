@@ -1,12 +1,23 @@
 ### 人脸识别
 
+- [设备注册FaceAuth](https://coding.net/u/CoreWise/p/OutSourcing/git/raw/master/apk/face/FaceAuth_release20190718.apk)
+
+设备注册一般由我公司人员注册成功后再发货
 
 - [人脸识别演示FaceDemo](https://coding.net/u/CoreWise/p/OutSourcing/git/raw/master/apk/face/FaceDemo_release20190722.apk)
 
-- [设备注册FaceAuth](https://coding.net/u/CoreWise/p/OutSourcing/git/raw/master/apk/face/FaceAuth_release20190718.apk)
+该Demo演示功能如下:
+
+    - 1. 初始化算法
+    - 2. 照片 1:1、 1:N 比对功能
+    - 3. 摄像头采集人像 1:1、1:N 比对功能
+
 
 - [身份证照片和人脸比对演示IDCardFace](https://coding.net/u/CoreWise/p/OutSourcing/git/raw/master/apk/face/IDCardFace_release20190718.apk)
 
+该Demo演示身份证照片和人脸比对功能
+
+![IDCardFace.png](https://i.loli.net/2019/08/06/ULyjOkHYEfDTRmZ.png)
 
 ### **说明:**
 
