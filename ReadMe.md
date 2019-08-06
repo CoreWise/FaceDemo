@@ -14,8 +14,15 @@
 - 人脸识别算法支持 1:1 、1:N 比对
 
 
+### 开发文档
+
+- [ZKLiveFace SDK 5.6 Android开发手册20190121](https://raw.githubusercontent.com/CoreWise/FaceDemo/master/ZKLiveFaceSDK_5.6_20190121.pdf)
 
 
+### 问题汇总
+
+
+- 二次开发需要购买许可
 
 
 
